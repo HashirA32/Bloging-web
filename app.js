@@ -1,24 +1,39 @@
 const express = require('express');
+const { result } = require('lodash');
+const mongoose = require('mongoose');
+const Blog = require('./models/blogs');
+  // express app
+  const app = express();
+  
+  const DB_URL = 'mongodb+srv://hashirofficiala32:PHKK0Cnc921fSWOO@first.qss1a.mongodb.net/Blogs?retryWrites=true&w=majority&appName=First';
 
-// express app
-const app = express();
-
-// listen for requests
-app.listen(3000);
+  mongoose.connect(DB_URL)
+  .then((result) => {
+    app.listen(3000);
+  })
+  .catch((err) => {
+    console.log("Err");
+  })
 
 // register view engine
 app.set('view engine', 'ejs');
 
 // middleware & static files
-app.use(express.static('public'));
+app.use(express.static('public')); 
+
 
 app.get('/', (req, res) => {
-  const blogs = [
-    {title: 'Yoshi finds eggs', snippet: 'Lorem ipsum dolor sit amet consectetur'},
-    {title: 'Mario finds stars', snippet: 'Lorem ipsum dolor sit amet consectetur'},
-    {title: 'How to defeat bowser', snippet: 'Lorem ipsum dolor sit amet consectetur'},
-  ];
-  res.render('index', { title: 'Home', blogs });
+  res.redirect('/blog');
+});
+
+app.get('/blog', (req, res) => {
+  Blog.find().sort({createdAt: -1})
+    .then((result)=>{
+      res.render('index', {title: 'Blogs', blogs: result})
+    })
+      .catch((err)=>{
+        console.log(err)
+      });
 });
 
 app.get('/about', (req, res) => {
