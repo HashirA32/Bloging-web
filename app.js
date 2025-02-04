@@ -19,7 +19,8 @@ const Blog = require('./models/blogs');
 app.set('view engine', 'ejs');
 
 // middleware & static files
-app.use(express.static('public')); 
+app.use(express.static('public'));  
+app.use(express.urlencoded({ extended : true}));
 
 
 app.get('/', (req, res) => {
@@ -35,6 +36,46 @@ app.get('/blog', (req, res) => {
         console.log(err)
       });
 });
+
+
+app.post('/blog', (req, res)=> {
+ const blog = new Blog(req.body)
+
+  blog.save()
+  .then((result)=>{
+   res.redirect('/blog');
+
+})
+  .catch((err)=>{
+    console.log(err)
+  });
+});
+
+app.get('/blog/:id', (req, res) => {
+  const id = req.params.id;
+  Blog.findById(id)
+    .then(result => {
+      res.render('details', { blog: result, title: 'Blog Details' });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+app.delete('/blog/:id', (req, res) => {
+  const id = req.params.id;
+  Blog.findByIdAndDelete(id)
+  .then(result =>{
+    res.json({ redirect: '/blog'})
+  })
+  .catch(err => {
+    console.log(err);
+  });
+});
+
+
+
+
 
 app.get('/about', (req, res) => {
   res.render('about', { title: 'About' });
