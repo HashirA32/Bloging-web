@@ -12,7 +12,7 @@
 }
 
 body {
-  font-family: "Noto Serif", sans-serif;
+  font-family: "Poppins", sans-serif;
   background: linear-gradient(
     135deg,
     #0f766e,
@@ -71,6 +71,7 @@ nav a:hover {
   border-radius: 10px;
   transition: transform 0.3s;
   padding-left: 5rem;
+  padding-right: 5rem;
 }
 
 .blog-content {
@@ -135,7 +136,7 @@ nav a:hover {
 
 /* Create Blog */
 .create-blog {
-  max-width: 600px;
+  max-width: 1100px;
   margin: 40px auto;
   background: var(--glass-bg);
   backdrop-filter: blur(10px);
@@ -147,7 +148,7 @@ nav a:hover {
 .create-blog form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1rem;
 }
 .create-blog label {
   font-weight: 600;
@@ -168,10 +169,23 @@ nav a:hover {
   border: 1px solid var(--primary-color);
   box-shadow: 0 0 5px var(--primary-color);
 }
+
+#title {
+  max-width: 400px;
+}
+
+#snippet {
+  max-width: 600px;
+}
+#body {
+  height: 12rem;
+  border-radius: 1rem;
+}
 .create-blog button {
   background: var(--primary-color);
   color: var(--text-light);
-  padding: 15px;
+  width: 10rem;
+  padding: 1rem;
   border: none;
   border-radius: 50px; /* Rounded button */
   font-size: 1.2rem;
@@ -180,7 +194,7 @@ nav a:hover {
   box-shadow: 0 4px 10px var(--shadow);
 }
 .create-blog button:hover {
-  background: var(--accent-color);
+  background: var(--text-dark);
 }
 
 footer {
@@ -189,4 +203,72 @@ footer {
   background-color: var(--glass-bg);
   text-align: center;
   box-shadow: 15px 15px 50px var(--shadow);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+  .content {
+    padding-left: 2rem;
+  }
+
+  .blog-content {
+    margin-left: 0;
+  }
+
+  .details {
+    flex-direction: column;
+    margin: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  nav ul {
+    gap: 10px;
+  }
+
+  .create-blog {
+    padding: 10px;
+  }
+
+  #title,
+  #snippet {
+    max-width: 100%;
+  }
+
+  footer {
+    padding: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  nav h1 {
+    font-size: 1.8rem;
+  }
+
+  nav {
+    padding: 10px;
+    margin: 0;
+  }
+
+  .create-blog button {
+    width: 100%;
+    padding: 0.8rem;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .snippet {
+    font-size: 0.9rem;
+  }
+
+  .details {
+    margin: 1.5rem;
+  }
+
+  .delete {
+    font-size: 0.8rem;
+    margin-top: 4rem;
+  }
 }
