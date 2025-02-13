@@ -13,10 +13,6 @@
   },
   "author": "Hashir Ali",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/iamshaunjp/node-crash-course/issues"
-  },
-  "homepage": "https://github.com/iamshaunjp/node-crash-course#readme",
   "dependencies": {
     "ejs": "^3.1.2",
     "express": "^4.17.1",
