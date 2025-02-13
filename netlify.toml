@@ -1,8 +1,5 @@
-{
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/app.js"
-    }
-  ]
-}
+[[redirects]]
+  from = "/*"
+  to = "/index.js"
+  status = 200
+  force = true
